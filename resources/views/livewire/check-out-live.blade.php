@@ -154,10 +154,10 @@
                                 <ul>
                                     @foreach($order_detailes as $order)
                                     <li>{{$order->name}}<span>$
-                                        @if($order->sale != 0 & $order->sale > 0  )
-                                            {{$order->price * ($order->sale * .100)}}
+                                        @if($order->descount_Type != 0 & $order->sale > 0  )
+                                            {{($order->price - $order->sale) * $order->qty}}
                                         @else
-                                            {{$order->price - $order->sale }}
+                                            {{($order->price - $order->sale) * $order->qty }}
                                         @endif
                                     </span></li>
                                     @endforeach

@@ -28,11 +28,16 @@ class CheckOutLive extends Component
             $email,
             $Create_account,
             $Password,
-            $Order_notes;
+            $Order_notes
+           ;
         // ===================
 
     public $product_name,$sub_total,
-            $product_price;
+            $product_price,
+            $data_carts=[],
+            $total_flate_price,
+            $total_percent_price;
+
 
     // ====================================
     public function store(){
@@ -104,6 +109,7 @@ class CheckOutLive extends Component
      }else{
         $this->dispatchBrowserEvent('alert',
         ['type' => 'success',  'message' => 'order sent successfuly']);
+
             session()->flash('message', 'order sent successfuly.');
      }
 
@@ -116,38 +122,31 @@ class CheckOutLive extends Component
 
         $cookie = $_COOKIE['organi'];
 
-        $products = cart::select('product_id')->where('cookie', $cookie)->get();
+        // $products = cart::select('product_id')->where('cookie', $cookie)->get();
 
 
-        $cart_datas = DB::table('products')
+        $this->data_carts = DB::table('products')
             ->distinct()
             ->join('carts', 'products.id', '=', 'carts.product_id')
             ->select('products.*', 'carts.*')->where('cookie', $cookie)
-            ->paginate(config('contans.paginate_count'));
+            ->get();
+
+                if($this->data_carts != null){
+                    foreach($this->data_carts as $data){
+
+                            if( ($data->descount_Type ==0) && ($data->qty != 0)  )
+                             $this->total_flate_price =($data->price - $data->sale) * $data->qty;
+
+                             if(($data->descount_Type !=0) && ($data->qty != 0))
+                             $this->total_percent_price=($data->price - ($data->price *($data->sale /100))) * $data->qty;
+
+                    $this->sub_total = $this->total_percent_price +  $this->total_flate_price;
+                    }
+                }
 
 
-        $price = DB::table('products')
-            ->distinct()
-            ->join('carts', 'products.id', '=', 'carts.product_id')
-            ->select('products.price', 'carts.product_id')->where('cookie', $cookie)
-            ->sum('price');
+        return view('livewire.check-out-live',[ 'order_detailes'=>$this->data_carts])->extends('layouts.site');
 
 
-
-        $sale = DB::table('products')
-            ->distinct()
-            ->join('carts', 'products.id', '=', 'carts.product_id')
-            ->select('products.sale', 'carts.product_id')->where(
-        [['cookie', $cookie]
-
-        ])
-        ->sum('sale');
-                $total_qty = cart::where('cookie', $cookie)->sum('qty');
-                foreach($products as $product)
-                $this->sub_total=($sale!=0 & $product->descount_Type !=0)? ($price - ($price *($sale / 100)))  : ($price - $sale ) ;
-        // ===========================
-        return view('livewire.check-out-live',[
-            'order_detailes'=>$cart_datas])
-            ->extends('layouts.site');
     }
 }
