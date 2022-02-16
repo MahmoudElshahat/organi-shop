@@ -91,7 +91,7 @@
                         </table>
                         {{-- @include('front.alert.alert') --}}
 
-                        @livewire('notification')
+                        {{-- @livewire('notification') --}}
 
                     </div>
                 </div>

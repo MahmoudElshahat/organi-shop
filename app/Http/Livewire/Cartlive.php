@@ -91,7 +91,7 @@ public function decrement($id)
 // ========================= Delete ===============================
 public function removeCart($id)
     {
-        $item_id = cart::find($id);
+              $item_id = cart::find($id);
 
               $item_id->delete($id);
 
@@ -106,22 +106,30 @@ public function removeCart($id)
 
         // $products=cart::select('product_id')->where('cookie',$cookie)->get();
 
-
           $cart_datas =DB::table('products')
                             -> distinct()
                             ->join('carts', 'products.id', '=', 'carts.product_id')
                             ->select('products.*','carts.*')->where('cookie',$cookie)
                             ->paginate(config('contans.paginate_count'));
 
-        if($cart_datas){
+        if($cart_datas != null){
         foreach($cart_datas as $data){
 
-            $total_percent_price=($data->descount_Type != 0 && $data->sale !=0)?($data->price - ($data->price *($data->sale /100))) * $data->qty: 0 ;
+                // if($data->descount_Type !=0)
+                $total_percent_price=($data->descount_Type !=0)?($data->price - ($data->price *($data->sale /100))) * $data->qty:0;
 
-            $total_flate_price=($data->descount_Type == 0 )?($data->price - $data->sale) * $data->qty:1000;
-            $this->total_cart_price=$total_percent_price + $total_flate_price;
 
+                // elseif($data->descount_Type ==0)
+                 $total_flate_price =($data->descount_Type ==0)?($data->price - $data->sale) * $data->qty:0;
+
+            $sum=$total_percent_price +  $total_flate_price;
         }
+
+        $this->total_cart_price=$sum;
+        // if()
+        // $this->total_cart_price= $total_percent_price +  $total_flate_price;
+
+
       }
         return view('livewire.cartlive',['data_carts'=>$cart_datas,
                                         ])->extends('layouts.site');

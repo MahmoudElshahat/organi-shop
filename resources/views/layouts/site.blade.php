@@ -24,11 +24,11 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}" type="text/css">
 
 
-    {{-- =========== live sweet alert ======== --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" />
+    {{-- =========== live sweet alert test 2 ======== --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" /> --}}
 
 
-    {{-- ================ --}}
+    {{-- =============test 1=== --}}
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -95,15 +95,18 @@
 <script>
     window.addEventListener('alert', event => {
                  toastr[event.detail.type](event.detail.message,
+                //  toastr.options.resumeTimer
                  event.detail.title ?? ''), toastr.options = {
                         "closeButton": true,
                         "progressBar": false,
+                    
                     }
                 });
 </script>
 {{-- ============= test 2======================= --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
  <script>
+    //  ==================================================
         const SwalModal = (icon, title, html) => {
             Swal.fire({
                 icon,
@@ -111,7 +114,7 @@
                 html
             })
         }
-
+// ===============================================================================
         const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
             Swal.fire({
                 icon,
@@ -132,26 +135,29 @@
                 }
             })
         }
-
-        const SwalAlert = (icon, title, timeout = 7000) => {
+// ===================================================
+        const SwalAlert = (icon, title, timeout = 3000) => {
             const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                confirmButtonColor: '#d33',
-                timer: timeout,
-                onOpen: toast => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: timeout,
+            timerProgressBar: false,
+            onOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            },
+        })
 
-            Toast.fire({
-                icon,
-                title
-            })
+        Toast.fire({
+          icon,
+          title
+        })
+
+
         }
 
+// =======================================
         document.addEventListener('DOMContentLoaded', () => {
             this.livewire.on('swal:modal', data => {
                 SwalModal(data.icon, data.title, data.text)
@@ -162,11 +168,13 @@
             })
 
             this.livewire.on('swal:alert', data => {
-                SwalAlert(data.icon, data.title, data.timeout)
+                SwalAlert(data.icon, data.title, data.timeout),
+
             })
         })
-    </script>
+    </script> --}}
 
+{{-- ########################################################################### --}}
   {{-- =========================== --}}
 </body>
 </html>
