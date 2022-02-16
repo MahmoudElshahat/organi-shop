@@ -135,7 +135,7 @@
                 </div>
             </div>
 
-                @include('front.alert.alert')
+                {{-- @include('front.alert.alert') --}}
 
             <form action="#" wire:click.prevent="store" >
                 <div class="row">

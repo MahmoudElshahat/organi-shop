@@ -24,6 +24,7 @@
     "dependencies": {
         "laravel-echo": "^1.11.3",
         "socket.io-client": "^4.4.1",
+        "sweetalert2": "^11.4.0",
         "turbolinks": "^5.2.0"
     }
 }

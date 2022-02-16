@@ -189,7 +189,7 @@
                                     </label>
                                 </div>
                                 <button type="submit" class="site-btn">PLACE ORDER</button>
-                                 @include('front.alert.alert')
+                                 {{-- @include('front.alert.alert') --}}
                             </div>
                         </div>
                     </div>

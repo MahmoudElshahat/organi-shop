@@ -73,6 +73,10 @@ public function shop_details($id)
             cart::where([['product_id', '=', $id], ['cookie', '=', $_COOKIE['organi']]])->increment('qty');
 
         }
+
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'product Add to cart successfuly']);
+        
         session()->flash('message','product Add to cart successfuly');
     }    // return
 // ============================ select product by categories ============================

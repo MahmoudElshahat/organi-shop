@@ -96,8 +96,14 @@ class CheckOutLive extends Component
                     'user_id'=>$data['email'],
             ]);
         }
+
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'order sent successfuly']);
+
             session()->flash('message', 'order sent successfuly.');
      }else{
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'order sent successfuly']);
             session()->flash('message', 'order sent successfuly.');
      }
 

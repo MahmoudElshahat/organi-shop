@@ -95,17 +95,7 @@
                 </div>
             </div>
             {{-- @include('front.alert.alert') --}}
-            <div class="mes" >
-                @if (session()->has('message'))
-                    <div class="mes alert alert-success text-center">
-                        {{ session('message') }}
-                    </div>
-                @endif
-
-                </div>
-
-            {{-- @livewire('alert-succes') --}}
-
+           
             <div class="row featured__filter">
 
                     {{-- ================== pro by section ========================== --}}

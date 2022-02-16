@@ -66,8 +66,9 @@ public function add(){
         Artisan::call('tenants:artisan db:seed --tenant='.$tanant->id);
 
         // ==========================================================================
-
-        return session()->flash('message','Data Add seccessfuly');
+       return $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'Data Add seccessfuly']);
+        // return session()->flash('message','Data Add seccessfuly');
 
 
 }//end function add

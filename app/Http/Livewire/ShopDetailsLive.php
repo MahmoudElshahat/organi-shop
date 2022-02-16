@@ -68,8 +68,12 @@ public function decrement($id)
             $query->update(['qty' => $this->quntity]);
 
         }
+        // ================ Alerts =======================
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'product Add to cart successfuly']);
 
         session()->flash('message','product Add to cart successfuly');
+        // ========================================
         $this->product_id=$id;
 
         $product_details=product::where('id',$id)->first();

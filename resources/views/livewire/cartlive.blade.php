@@ -89,7 +89,9 @@
 
                             </tbody>
                         </table>
-                        @include('front.alert.alert')
+                        {{-- @include('front.alert.alert') --}}
+
+                        @livewire('notification')
 
                     </div>
                 </div>

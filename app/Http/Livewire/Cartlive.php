@@ -11,6 +11,7 @@ use Livewire\WithFileUploads;
 
 
 use App\Models\product;
+use PgSql\Result;
 
 class Cartlive extends Component
 {
@@ -46,7 +47,13 @@ public function increment($id)
             }
 
         }
-        session()->flash('message', 'Cart updated Seuccfily');
+
+
+
+        $this->dispatchBrowserEvent('alert',
+                ['type' => 'success',  'message' => 'Cart Updated successfuly']);
+
+        // session()->flash('message', 'Cart updated Seuccfily');
 
     }
 
@@ -75,7 +82,9 @@ public function decrement($id)
             }
 
         }
-        session()->flash('message', 'Cart updated Seuccfily');
+
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'Cart Updated successfuly']);
 
     }
 
@@ -84,9 +93,11 @@ public function removeCart($id)
     {
         $item_id = cart::find($id);
 
-        $item_id->delete($id);
+              $item_id->delete($id);
 
-        session()->flash('message', 'Product Removed Successfully');
+
+              $this->dispatchBrowserEvent('alert',
+              ['type' => 'error',  'message' => 'Product Deleted Successfully']);
     }
 // =========================== Render ====================
     public function render()
@@ -102,56 +113,16 @@ public function removeCart($id)
                             ->select('products.*','carts.*')->where('cookie',$cookie)
                             ->paginate(config('contans.paginate_count'));
 
-
-        //     $price=DB::table('products')
-        //             ->distinct()
-        //             ->join('carts', 'products.id', '=', 'carts.product_id')
-        //             ->select('products.price', 'carts.product_id')->where('cookie', $cookie)
-        //             ->sum('price');
-
-        //     $sale=DB::table('products')
-        //             ->distinct()
-        //             ->join('carts', 'products.id', '=', 'carts.product_id')
-        //             ->select('products.sale', 'carts.product_id')->where( [
-        //                ['cookie', $cookie],
-
-        //                 ])
-        //             ->sum('sale');
-
-        //     $normal_sale=DB::table('products')
-        //             ->distinct()
-        //             ->join('carts', 'products.id', '=', 'carts.product_id')
-        //             ->select('products.sale', 'carts.product_id')->where( [
-        //                ['cookie', $cookie],
-        //                ['descount_Type',0]
-        //                 ])
-        //             ->sum('sale');
-
-        //     $percent_sale=DB::table('products')
-        //     ->distinct()
-        //     ->join('carts', 'products.id', '=', 'carts.product_id')
-        //     ->select('products.sale', 'carts.product_id')->where( [
-        //         ['cookie', $cookie],
-        //         ['descount_Type','!=',0]
-        //         ])
-        //     ->sum('sale');
-
-
-            // $total_qty= cart::where('cookie',$cookie)->sum('qty');
-        // dd($sale, $price, $total_qty);
-
-        // $t_price=$price * $total_qty;
-
-        if($cart_datas)
+        if($cart_datas){
         foreach($cart_datas as $data){
-
 
             $total_percent_price=($data->descount_Type != 0 && $data->sale !=0)?($data->price - ($data->price *($data->sale /100))) * $data->qty: 0 ;
 
-            $total_flate_price=($data->descount_Type !== 0 )?($data->price - $data->sale) * $data->qty:1000;
-        }
-        $this->total_cart_price=$total_percent_price + $total_flate_price;
+            $total_flate_price=($data->descount_Type == 0 )?($data->price - $data->sale) * $data->qty:1000;
+            $this->total_cart_price=$total_percent_price + $total_flate_price;
 
+        }
+      }
         return view('livewire.cartlive',['data_carts'=>$cart_datas,
                                         ])->extends('layouts.site');
     }

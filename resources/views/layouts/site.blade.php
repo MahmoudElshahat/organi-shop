@@ -23,6 +23,19 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('assets/front/css/style.css')}}" type="text/css">
 
+
+    {{-- =========== live sweet alert ======== --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.css" />
+
+
+    {{-- ================ --}}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    {{-- <link rel="stylesheet" href="sweetalert2.min.css"> --}}
+    {{-- ================== --}}
     @livewireStyles
 
 </head>
@@ -75,9 +88,85 @@
 {{-- ================================= --}}
 {{-- {{ $slot }} --}}
 @include('ajax')
+
+{{-- =================  livewire alerts ==============--}}
 @livewireScripts
+{{-- ================== test 1========================= --}}
 <script>
-    $(".mes").delay(100).hide(0);
+    window.addEventListener('alert', event => {
+                 toastr[event.detail.type](event.detail.message,
+                 event.detail.title ?? ''), toastr.options = {
+                        "closeButton": true,
+                        "progressBar": false,
+                    }
+                });
 </script>
+{{-- ============= test 2======================= --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+ <script>
+        const SwalModal = (icon, title, html) => {
+            Swal.fire({
+                icon,
+                title,
+                html
+            })
+        }
+
+        const SwalConfirm = (icon, title, html, confirmButtonText, method, params, callback) => {
+            Swal.fire({
+                icon,
+                title,
+                html,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText,
+                reverseButtons: true,
+            }).then(result => {
+                if (result.value) {
+                    return livewire.emit(method, params)
+                }
+
+                if (callback) {
+                    return livewire.emit(callback)
+                }
+            })
+        }
+
+        const SwalAlert = (icon, title, timeout = 7000) => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                confirmButtonColor: '#d33',
+                timer: timeout,
+                onOpen: toast => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon,
+                title
+            })
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            this.livewire.on('swal:modal', data => {
+                SwalModal(data.icon, data.title, data.text)
+            })
+
+            this.livewire.on('swal:confirm', data => {
+                SwalConfirm(data.icon, data.title, data.text, data.confirmText, data.method, data.params, data.callback)
+            })
+
+            this.livewire.on('swal:alert', data => {
+                SwalAlert(data.icon, data.title, data.timeout)
+            })
+        })
+    </script>
+
+  {{-- =========================== --}}
 </body>
 </html>

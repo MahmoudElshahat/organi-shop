@@ -136,7 +136,7 @@
                           <a wire:click.prevent="add({{$pro_details->id}})" href="#" class="primary-btn">ADD TO CARD</a>
                         {{-- @endforeach --}}
                     @endif
-                    @include('front.alert.alert')
+                    {{-- @include('front.alert.alert') --}}
                     {{-- ==================================================================== --}}
 
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
