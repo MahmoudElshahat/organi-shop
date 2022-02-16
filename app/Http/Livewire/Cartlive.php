@@ -18,7 +18,9 @@ class Cartlive extends Component
 use WithFileUploads;
     public $quntity;
 
-    public $total_cart_price;
+    public $total_cart_price,
+             $total_percent_price,
+                 $total_flate_price;
 
     public $count;
 // ============================== icrement ===============================
@@ -115,20 +117,21 @@ public function removeCart($id)
         if($cart_datas != null){
         foreach($cart_datas as $data){
 
-                // if($data->descount_Type !=0)
-                $total_percent_price=($data->descount_Type !=0)?($data->price - ($data->price *($data->sale /100))) * $data->qty:0;
 
 
-                // elseif($data->descount_Type ==0)
-                 $total_flate_price =($data->descount_Type ==0)?($data->price - $data->sale) * $data->qty:0;
 
-            $sum=$total_percent_price +  $total_flate_price;
+                if($data->descount_Type ==0 &&  $data->qty != 0 &&  $data->sale != 0 )
+                 $this->total_flate_price =($data->price - $data->sale) * $data->qty;
+
+                 if($data->descount_Type !=0 && $data->qty != 0 &&  $data->sale != 0)
+                 $this->total_percent_price=($data->price - ($data->price *($data->sale /100))) * $data->qty;
+
+            // $sum=$total_percent_price +  $total_flate_price;
+
+
+
         }
-
-        $this->total_cart_price=$sum;
-        // if()
-        // $this->total_cart_price= $total_percent_price +  $total_flate_price;
-
+        $this->total_cart_price= $this->total_percent_price +  $this->total_flate_price;
 
       }
         return view('livewire.cartlive',['data_carts'=>$cart_datas,
