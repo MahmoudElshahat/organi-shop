@@ -46,6 +46,7 @@ public function increment($id)
             }
 
         }
+        session()->flash('message', 'Cart updated Seuccfily');
 
     }
 
@@ -74,6 +75,7 @@ public function decrement($id)
             }
 
         }
+        session()->flash('message', 'Cart updated Seuccfily');
 
     }
 
@@ -84,7 +86,7 @@ public function removeCart($id)
 
         $item_id->delete($id);
 
-        session()->flash('success', 'Item has removed !');
+        session()->flash('message', 'Product Removed Successfully');
     }
 // =========================== Render ====================
     public function render()
@@ -143,9 +145,10 @@ public function removeCart($id)
         if($cart_datas)
         foreach($cart_datas as $data){
 
-            $total_percent_price=($data->descount_Type != 0 && $data->sale !=0)?($data->price - ($price *($sale /100))) * $data->qty: 0 ;
 
-            $total_flate_price=($data->descount_Type == 0 && $data->sale !=0)?($data->price - $data->sale) * $data->qty:0;
+            $total_percent_price=($data->descount_Type != 0 && $data->sale !=0)?($data->price - ($data->price *($data->sale /100))) * $data->qty: 0 ;
+
+            $total_flate_price=($data->descount_Type !== 0 )?($data->price - $data->sale) * $data->qty:1000;
         }
         $this->total_cart_price=$total_percent_price + $total_flate_price;
 

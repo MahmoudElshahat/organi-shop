@@ -48,14 +48,15 @@
                                     <td class="shoping__cart__quantity">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                            <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{$data->id}})" step='1'  value="-">
+                                            <input type="button" class="dec qtybtn" min="1" wire:click.lazy="decrement({{$data->id}})" step='1'  value="-">
                                                 <button  wire:model="quntity">{{$data->qty}}</button>
-                                            <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{$data->id}})"  value="+">
+                                            <input type="button" class="inc qtybtn" min="1" step='1' wire:click.lazy="increment({{$data->id}})"  value="+">
 
                                             </div>
                                         </div>
                                     </td>
                                     <td class="shoping__cart__total">
+
                                     {{-- ============ total product  price ==================== --}}
                                         @If($data->descount_Type == 0)
 
@@ -88,6 +89,8 @@
 
                             </tbody>
                         </table>
+                        @include('front.alert.alert')
+
                     </div>
                 </div>
             </div>
