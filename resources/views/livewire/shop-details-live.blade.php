@@ -1,5 +1,4 @@
 <div>
-    {{-- nnnnnnnn --}}
         <section class="breadcrumb-section set-bg" data-setbg="{{asset('assets/front/img/breadcrumb.jpg')}}" wire:ignore>
         <div class="container">
             <div class="row">
