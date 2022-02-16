@@ -102,7 +102,6 @@
                         @if(Session::get('product_det'))
 
                             <p>{{Session::get('product_det')->desc}}.</p>
-                            <div class="product__details__quantity">
                         @else
                           {{-- @foreach ($pro_details as $pro_detail) -- --}}
                              <p>{{$pro_details->desc}}.</p>
@@ -110,19 +109,19 @@
                             {{-- @endforeach --}}
                         @endif
                     {{-- ==================================================================== --}}
+                            <div class="product__details__quantity">
 
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                    @if(Session::get('product_det'))
+                                      @if(Session::get('product_det'))
                                             <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{Session::get('product_det')->id}})" step='1'  value="-">
                                                 <button  wire:model="quntity">{{$quntity}}</button>
                                             <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{Session::get('product_det')->id}})"  value="+">
-                                @else
-                                        <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{$pro_details->id}})" step='1'  value="-">
-                                            <button  wire:model="quntity">{{$quntity}}</button>
-                                        <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{$pro_details->id}})"  value="+">
-
-                                @endif
+                                       @else
+                                            <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{$pro_details->id}})" step='1'  value="-">
+                                                <button  wire:model="quntity">{{$quntity}}</button>
+                                            <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{$pro_details->id}})"  value="+">
+                                          @endif
 
                                 </div>
                             </div>
@@ -134,13 +133,16 @@
                         <a  wire:click.prevent="add({{Session::get('product_det')->id}})" href="#" class="primary-btn">ADD TO CARD</a>
                         @else
                         {{-- @foreach ($pro_details as $pro_detail) --}}
-                          <a href="{{route('cart.add',$pro_details->id) }}"wire:click.prevent="add({{$pro_details->id}}) class="primary-btn">ADD TO CARD</a>
+                          <a wire:click.prevent="add({{$pro_details->id}})" href="#" class="primary-btn">ADD TO CARD</a>
                         {{-- @endforeach --}}
                     @endif
                     @include('front.alert.alert')
                     {{-- ==================================================================== --}}
 
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+
+                    </div>
+
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
                             <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>
