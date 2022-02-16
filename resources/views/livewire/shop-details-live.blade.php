@@ -26,14 +26,14 @@
                         <div class="product__details__pic__item">
                     {{-- ==================================================================== --}}
                             @if(Session::get('product_det'))
-                            <img class="product__details__pic__item--large"
-                                src="{{asset('images/products/'.Session::get('product_det')->image)}}" alt="">
-                             {{-- @else
-                                @foreach ($pro_details as $pro_detail)
+                                <img class="product__details__pic__item--large"
+                                      src="{{asset('images/products/'.Session::get('product_det')->image)}}" alt="">
+                             @else
+                                {{-- @foreach ($pro_details as $pro_detail) --}}
                                       <img class="product__details__pic__item--large"
-                                        src="{{asset('images/products/'.$pro_detail->image)}}" alt="">
-                                 @endforeach
-                            @endif --}}
+                                        src="{{asset('images/products/'.$pro_details->image)}}" alt="">
+                                 {{-- @endforeach --}}
+                            @endif
                     {{-- ==================================================================== --}}
 
                         </div>
@@ -58,9 +58,9 @@
                         @if(Session::get('product_det'))
                               <h3>{{Session::get('product_det')->name}}</h3>
                         @else
-                            @foreach ($pro_details as $pro_detail)
-                            <h3>{{$pro_detail->name}}</h3>
-                            @endforeach
+                            {{-- @foreach ($pro_details as $pro_detail) --}}
+                            <h3>{{$pro_details->name}}</h3>
+                            {{-- @endforeach --}}
                         @endif
                     {{-- ==================================================================== --}}
 
@@ -72,11 +72,11 @@
                                 <i class="fa fa-star"></i>
                             @endfor
                       @else
-                          @foreach ($pro_details as $pro_detail)
-                          @for ($i = 1; $i <=$pro_detail->rate ; $i++)
+                          {{-- @foreach ($pro_details as $pro_detail) --}}
+                          @for ($i = 1; $i <=$pro_details->rate ; $i++)
                                 <i class="fa fa-star"></i>
                             @endfor
-                          @endforeach
+                          {{-- @endforeach --}}
                       @endif
                     {{-- ==================================================================== --}}
 
@@ -92,9 +92,9 @@
                         @if(Session::get('product_det'))
                              <div class="product__details__price">${{Session::get('product_det')->price}}</div>
                       @else
-                            @foreach ($pro_details as $pro_detail)
-                                <div class="product__details__price">${{$pro_detail->price}}</div>
-                            @endforeach
+                            {{-- @foreach ($pro_details as $pro_detail) --}}
+                                <div class="product__details__price">${{$pro_details->price}}</div>
+                            {{-- @endforeach --}}
                         @endif
                         {{-- <div class="product__details__price">${{$products->id}}</div> --}}
                     {{-- ==================================================================== --}}
@@ -104,18 +104,26 @@
                             <p>{{Session::get('product_det')->desc}}.</p>
                             <div class="product__details__quantity">
                         @else
-                          @foreach ($pro_details as $pro_detail) --
-                             <p>{{$pro_detail->desc}}.</p>
+                          {{-- @foreach ($pro_details as $pro_detail) -- --}}
+                             <p>{{$pro_details->desc}}.</p>
 
-                            @endforeach
+                            {{-- @endforeach --}}
                         @endif
                     {{-- ==================================================================== --}}
 
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                        <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{Session::get('product_det')->id}})" step='1'  value="-">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                    @if(Session::get('product_det'))
+                                            <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{Session::get('product_det')->id}})" step='1'  value="-">
+                                                <button  wire:model="quntity">{{$quntity}}</button>
+                                            <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{Session::get('product_det')->id}})"  value="+">
+                                @else
+                                        <input type="button" class="dec qtybtn" min="1" wire:click.prevent="decrement({{$pro_details->id}})" step='1'  value="-">
                                             <button  wire:model="quntity">{{$quntity}}</button>
-                                        <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{Session::get('product_det')->id}})"  value="+">
+                                        <input type="button" class="inc qtybtn" min="1" step='1' wire:click.ignore="increment({{$pro_details->id}})"  value="+">
+
+                                @endif
+
                                 </div>
                             </div>
                         </div>
@@ -125,9 +133,9 @@
 
                         <a  wire:click.prevent="add({{Session::get('product_det')->id}})" href="#" class="primary-btn">ADD TO CARD</a>
                         @else
-                        @foreach ($pro_details as $pro_detail)
-                          <a href="{{route('cart.add',$pro_detail->id) }}"wire:click.prevent="add({{$pro_detail->id}}) class="primary-btn">ADD TO CARD</a>
-                        @endforeach
+                        {{-- @foreach ($pro_details as $pro_detail) --}}
+                          <a href="{{route('cart.add',$pro_details->id) }}"wire:click.prevent="add({{$pro_details->id}}) class="primary-btn">ADD TO CARD</a>
+                        {{-- @endforeach --}}
                     @endif
                     @include('front.alert.alert')
                     {{-- ==================================================================== --}}
@@ -141,7 +149,7 @@
                         @if(Session::get('product_det'))
                               <li><b>Quntity</b> <span>{{ Session::get('product_det')->quntity }}</span></li>
                         @else
-                        <li><b>Quntity</b> <span>{{ $pro_detail->quntity }}</span></li>
+                        <li><b>Quntity</b> <span>{{ $pro_details->quntity }}</span></li>
                         @endif
                     {{-- ========================================================================================= --}}
                             <li><b>Share on</b>
@@ -172,7 +180,7 @@
                                         @if(Session::get('product_det'))
                                               <p> <span>{{ Session::get('product_det')->desc }}</p>
                                         @else
-                                        <p>{{ $pro_detail->desc }}</p>
+                                        <p>{{ $pro_details->desc }}</p>
                                         @endif
                                     {{-- ========================================================================================= --}}.</p>
                                 </div>

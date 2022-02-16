@@ -83,7 +83,7 @@ public function decrement($id)
     {
         $products=product::paginate(4);
 
-        $pro_details=product::where('id',$this->product_id)->first();
+        $pro_details=product::inRandomOrder()->first();
 
         // $this->product_id=$id;
 
@@ -92,7 +92,7 @@ public function decrement($id)
 
         return view('livewire.shop-details-live',[
                                                     'products'=>$products,
-                                                    'pro_detail'=>$pro_details
+                                                    'pro_details'=>$pro_details
                                                 ])->extends('layouts.site');
     }
 }
