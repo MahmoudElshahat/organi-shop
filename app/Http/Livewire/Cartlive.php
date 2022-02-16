@@ -20,7 +20,7 @@ use WithFileUploads;
 
     public $total_cart_price,
              $total_percent_price,
-                 $total_flate_price;
+                 $total_flate_price,$data_carts=[];
 
     public $count;
 // ============================== icrement ===============================
@@ -108,33 +108,37 @@ public function removeCart($id)
 
         // $products=cart::select('product_id')->where('cookie',$cookie)->get();
 
-          $cart_datas =DB::table('products')
-                            -> distinct()
+          $this->data_carts =DB::table('products')
+                            // -> distinct()
                             ->join('carts', 'products.id', '=', 'carts.product_id')
                             ->select('products.*','carts.*')->where('cookie',$cookie)
-                            ->paginate(config('contans.paginate_count'));
-
-        if($cart_datas != null){
-        foreach($cart_datas as $data){
+                            ->get();
+                            // paginate(config('contans.paginate_count'))
 
 
+                            // dd($data_carts);
+
+        if($this->data_carts != null){
+        foreach($this->data_carts as $data){
 
 
-                if($data->descount_Type ==0 &&  $data->qty != 0 &&  $data->sale != 0 )
+
+                if( ($data->descount_Type ==0) && ($data->qty != 0)  )
                  $this->total_flate_price =($data->price - $data->sale) * $data->qty;
 
-                 if($data->descount_Type !=0 && $data->qty != 0 &&  $data->sale != 0)
+                 if(($data->descount_Type !=0) && ($data->qty != 0))
                  $this->total_percent_price=($data->price - ($data->price *($data->sale /100))) * $data->qty;
 
-            // $sum=$total_percent_price +  $total_flate_price;
-
-
+        $this->total_cart_price = $this->total_percent_price +  $this->total_flate_price;
 
         }
-        $this->total_cart_price= $this->total_percent_price +  $this->total_flate_price;
+        // $this->total_cart_price = $this->total_percent_price;
+
 
       }
-        return view('livewire.cartlive',['data_carts'=>$cart_datas,
-                                        ])->extends('layouts.site');
+
+      
+        return view('livewire.cartlive')->extends('layouts.site');
+
     }
 }

@@ -119,11 +119,9 @@
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            {{-- @if(isset($total_cart_price)) --}}
                             <li>Subtotal<span>$ {{$total_cart_price}}</span></li>
 
                             <li>Total <span>${{$total_cart_price}}</span></li>
-                            {{-- @endif --}}
                         </ul>
                         <a href="{{ route('check.out') }}" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
