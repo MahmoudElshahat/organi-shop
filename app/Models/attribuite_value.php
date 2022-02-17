@@ -20,6 +20,7 @@ class attribuite_value extends Model
         'name',
         'attribuite_id',
         'slug',
+        'lang',
         'created_at',
         'updated_at'
     ];

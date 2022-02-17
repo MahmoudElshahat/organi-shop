@@ -18,6 +18,7 @@ class attribuite extends Model
     protected $fillable = [
         'id',
         'name',
+        'lang',
         'slug',
         'created_at',
         'updated_at'

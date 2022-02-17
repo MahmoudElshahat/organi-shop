@@ -5,8 +5,8 @@
 
     <!-- Humberger Begin -->
 
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
+    {{-- <div class="humberger__menu__overlay"></div> --}}
+    {{-- <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
             <a href="#"><img src="{{asset('assets/front/img/logo.png')}}" alt=""></a>
         </div>
@@ -31,8 +31,8 @@
                 <a href="??"><i class="fa fa-user"></i> Loginnn</a>
             </div>
             {{-- <div class="header__top__right__auth"> --}}
-                <a href="??" style="color:black">DashBoard</a>
-            {{-- </div> --}}
+                {{-- <a href="??" style="color:black">DashBoard</a> --}}
+            {{-- </div> --}
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
@@ -63,7 +63,7 @@
                 <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
-    </div>
+    </div> --}}
     <!-- Humberger End -->
 {{-- ################### start Header  #################################################################### --}}
     <!-- Header Section Begin -->
@@ -91,15 +91,16 @@
                                 <img src="img/language.png" alt="">
                             <div>language</div>
                                 <span class="arrow_carrot-down"></span>
-                               <ul>
+                                <ul>
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    <li>
+
+                <li>
                         <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                             {{ $properties['native'] }}
                         </a>
                     </li>
                 @endforeach
-                </ul>
+            </ul>
                             </div>
                             <div class="header__top__right__auth">
                                 <a href="{{route('user.login.page')}}"><i class="fa fa-user"></i> Login</a>

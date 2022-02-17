@@ -23,6 +23,7 @@ class Categorie extends Model
     protected $fillable = [
         'id',
         'name',
+        'lang',
         'image',
         'slug',
         'created_at',

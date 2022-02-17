@@ -67,5 +67,65 @@ class blogSeeder extends Seeder
             'slug'=>str::slug('Cooking tips make cooking simple')
 
         ]);
+
+        // =================== lang ar ==========================
+        DB::table('blogs')->insert([
+            'name' => ' طرق لتحضير الفطور لـ30',
+            'lang'=>'ar',
+            'image' => 'blog-1.jpg',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'comment'=>'comments comments comments',
+            'slug'=>str::slug('6 ways to prepare breakfast for 30')
+
+        ]);
+        //  =================
+        DB::table('blogs')->insert([
+            'name' => 'قم بزيارة المزرعة النظيفة في الولايات المتحدة',
+            'lang'=>'ar',
+            'image' => 'blog-2.jpg',
+            'comment'=>'comments comments comments',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'slug'=>str::slug('Visit the clean farm in the US')
+
+        ]);
+        //  =================
+        DB::table('blogs')->insert([
+            'name' => 'نصائح الطبخ تجعل الطبخ بسيطًا',
+            'lang'=>'ar',
+            'image' => 'blog-3.jpg',
+            'comment'=>'comments comments comments',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'slug'=>str::slug('Cooking tips make cooking simple')
+
+        ]);
+        //  =================
+        DB::table('blogs')->insert([
+            'name' => 'نصائح الطبخ تجعل الطبخ بسيطًا',
+            'lang'=>'ar',
+            'image' => 'blog-4.jpg',
+            'comment'=>'comments comments comments',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'slug'=>str::slug('Cooking tips make cooking simple')
+
+        ]);
+        //  =================
+        DB::table('blogs')->insert([
+            'name' => 'اللحظة التي تحتاجها لإزالة الثوم من القائمة',
+            'lang'=>'ar',
+            'image' => 'blog-5.jpg',
+            'comment'=>'التعليق الخاص بالمقال ',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'slug'=>str::slug('The Moment You Need To Remove Garlic From The Menu')
+
+        ]);
+        DB::table('blogs')->insert([
+            'name' => 'نصائح الطبخ تجعل الطبخ بسيطًا',
+            'lang'=>'ar',
+            'image' => 'blog-6.jpg',
+            'comment'=>'comments comments comments',
+            'desc'=>'ولكن لأنه لا توجد أوقات كهذه أبدًا قد يطلب فيها بعض المخاض والألم العظيمين',
+            'slug'=>str::slug('Cooking tips make cooking simple')
+
+        ]);
     }
 }

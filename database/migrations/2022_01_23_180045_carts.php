@@ -15,6 +15,7 @@ class Carts extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->string('lang')->default('en');
             $table->string('user_id')->default('');
             $table->integer('product_id');
             $table->integer('qty');

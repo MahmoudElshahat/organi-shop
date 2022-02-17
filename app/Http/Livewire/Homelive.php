@@ -18,7 +18,7 @@ use App\Models\blog;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Homelive extends Component
 {
@@ -94,34 +94,34 @@ public function s_pro($id)
     public function render()
     {
 
-       
-        $m_categories = Categorie::select('id', 'name')->paginate(config('contans.paginate_five'));
 
-        $main_categori = Categorie::select('id', 'name')->paginate(config('contans.paginate_count'));
+        $m_categories = Categorie::select('id', 'name')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_five'));
+
+        $main_categori = Categorie::select('id', 'name')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_count'));
 
         $sub_categori = sub_categorie::select('id', 'name')->orderBy('id', 'desc')->paginate(config('contans.paginate_count'));
-        $products = product::select('*')->inRandomOrder()->paginate(config('contans.paginate_count'));
-
+        $products = product::select('*')->inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_count'));
+        // dd($products);
         if ($this->categori_id != null) {
-            $this->cat_product = product::where('categorie_id', $this->categori_id)->get();
+            $this->cat_product = product::where([['categorie_id', $this->categori_id],['lang',LaravelLocalization::getCurrentLocale()]])->get();
         }else{
-            $this->cat_product =product::select('*')->OrderBY('id','desc')->limit(config('contans.paginate_count'))->get();
+            $this->cat_product =product::select('*')->OrderBY('id','desc')->where('lang',LaravelLocalization::getCurrentLocale())->limit(config('contans.paginate_count'))->get();
         }
 
-       $latest_product=product::select('id','name','image','price','sale','descount_Type')->orderBy('id','desc')->paginate(config('contans.paginate_three'));
+       $latest_product=product::select('id','name','image','price','sale','descount_Type')->orderBy('id','desc')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
-       $topRate_product = product::select('id','name','image', 'price', 'sale','rate','descount_Type')->orderBy('rate', 'desc')->paginate(config('contans.paginate_three'));
+       $topRate_product = product::select('id','name','image', 'price', 'sale','rate','descount_Type')->orderBy('rate', 'desc')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
-       $topRate_product = product::select('id','rate','name','image', 'price', 'sale','descount_Type')->orderBy('rate', 'desc')->paginate(config('contans.paginate_three'));
+       $topRate_product = product::select('id','rate','name','image', 'price', 'sale','descount_Type')->orderBy('rate', 'desc')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
-       $review_product = product::select('id','name','image', 'price', 'sale','rate','descount_Type')->inRandomOrder()->paginate(config('contans.paginate_three'));
+       $review_product = product::select('id','name','image', 'price', 'sale','rate','descount_Type')->inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
-        $blogs=blog::select('*')->paginate(config('contans.paginate_three'));
+        $blogs=blog::select('*')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
         foreach($blogs as $blog)
-        $this->coment_count= blog::select('comment')->where('id',$blog->id)->sum('comment');
+        $this->coment_count= blog::select('comment')->where([ ['id',$blog->id], ['lang',LaravelLocalization::getCurrentLocale()] ])->sum('comment');
 
         // =========================================
-        $categories = Categorie::select('id', 'name')->get();
+        $categories = Categorie::select('id', 'name')->where('lang',LaravelLocalization::getCurrentLocale())->get();
 
         view::share('categories',$categories);
 

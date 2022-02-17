@@ -15,6 +15,8 @@ class Products extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('lang')->default('en');
+
             $table->string('name');
             $table->string('desc');
             $table->string('image');
@@ -23,12 +25,12 @@ class Products extends Migration
             // $table->integer('sale');
             $table->integer('rate')->default(1);
             $table->integer('quntity');
-
             $table->integer('descount_Type');
             $table->foreignId('attr_name_id');
             $table->foreignId('attr_value_id');
             $table->foreignId('categorie_id');
             $table->string('slug');
+
             $table->timestamps();
         });
     }

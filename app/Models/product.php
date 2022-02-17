@@ -21,6 +21,8 @@ class product extends Model
 
     protected $fillable = [
         'id',
+        'lang',
+
         'name',
         'desc',
         'image',
@@ -33,6 +35,7 @@ class product extends Model
         'attr_value_id',
         'descount_Type',
         'quntity',
+        'lang',
         'created_at',
         'updated_at'
     ];

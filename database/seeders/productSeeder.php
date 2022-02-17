@@ -222,6 +222,209 @@ class productSeeder extends Seeder
         //     'slug'=>str::slug('')
 
         // ]);
+        // =================== lang ar ====================
+        DB::table('products')->insert([
+            'name' => 'منتج-1',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-1.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-1')
+
+        ]);
         // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-2',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-2.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-2')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-3',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-3.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-3')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-4',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-4.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-4')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-5',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-5.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-5')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-6',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-6.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-6')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-7',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-7.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-7')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-8',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-8.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-8')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-9',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-9.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-9')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-10',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-10.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-10')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-11',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-11.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-11')
+
+        ]);
+        // =========
+        DB::table('products')->insert([
+            'name' => 'منتج-12',
+            'lang'=>'ar',
+            'desc'=>'هنا الوصف الخاص المنتج ',
+            'image'=>'product-12.jpg',
+            'price'=>rand(100,500),
+            'sale'=>rand(10,70),
+            'rate'=>rand(1,5),
+            'quntity'=>rand(10,50),
+            'descount_Type'=>rand(0,1),
+            'attr_name_id'=>rand(1,3),
+            'attr_value_id'=>rand(1,9),
+            'categorie_id'=>rand(1,3),
+            'slug'=>str::slug('product-12')
+
+        ]);
     }
 }

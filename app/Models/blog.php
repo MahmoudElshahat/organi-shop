@@ -23,6 +23,8 @@ class blog extends Model
         'name',
         'desc',
         'slug',
+        'lang',
+
         'created_at',
         'updated_at'
     ];
@@ -35,4 +37,4 @@ class blog extends Model
 
 
 
-                                
+

@@ -64,6 +64,65 @@ class attr_valueSeeder extends Seeder
             'slug'=>str::slug('')
 
         ]);
+        ####################### lang ar ##########################endregion
+
+
+        // ====== color ==================
+        DB::table('attribuite_values')->insert([
+            'name' => 'احمر',
+            'lang'=>'ar',
+            'attribuite_id' => 2,
+            'slug'=>str::slug('Red')
+
+        ]);
+
+        DB::table('attribuite_values')->insert([
+            'name' => 'اخضر',
+            'lang'=>'ar',
+            'attribuite_id' => 2,
+            'slug'=>str::slug('Green')
+
+        ]);
+
+        DB::table('attribuite_values')->insert([
+            'name' => 'ازرق',
+            'lang'=>'ar',
+            'attribuite_id' => 2,
+            'slug'=>str::slug('blue')
+
+        ]);
+         // ========== size ========
+         DB::table('attribuite_values')->insert([
+            'name' => 'صغير',
+            'lang'=>'ar',
+            'attribuite_id' => 1,
+            'slug'=>str::slug('Tiny')
+
+        ]);
+
+         DB::table('attribuite_values')->insert([
+            'name' => 'كبير',
+            'lang'=>'ar',
+            'attribuite_id' => 1,
+            'slug'=>str::slug('Large')
+
+        ]);
+
+         DB::table('attribuite_values')->insert([
+            'name' => 'وسط',
+            'lang'=>'ar',
+            'attribuite_id' => 1,
+            'slug'=>str::slug('Medium')
+
+        ]);
+         // ====== BRAND ============
+         DB::table('attribuite_values')->insert([
+            'name' => 'الحلال',
+            'lang'=>'ar',
+            'attribuite_id' => 3,
+            'slug'=>str::slug('')
+
+        ]);
 
     }
 }// end class

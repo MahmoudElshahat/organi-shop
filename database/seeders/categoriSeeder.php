@@ -38,5 +38,29 @@ class categoriSeeder extends Seeder
             'slug'=>str::slug('FastFood')
 
         ]);
+        // ============ lang ar =====================
+        DB::table('categories')->insert([
+            'name' => 'اللحوم الطازجه',
+            'lang'=>'ar',
+            'image' => 'cat-1.jpg',
+            'slug'=>str::slug('Fresh Meat')
+
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'دقيق الشوفان',
+            'lang'=>'ar',
+            'image' => 'cat-2.jpg',
+            'slug'=>str::slug('Oetmeal')
+
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'الوجبات السريعه',
+            'lang'=>'ar',
+            'image' => 'cat-3.jpg',
+            'slug'=>str::slug('FastFood')
+
+        ]);
     }
 }

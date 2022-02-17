@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 use Livewire\WithFileUploads;
 
+use LaravelLocalization;
+
 
 use App\Models\product;
 use PgSql\Result;
@@ -137,7 +139,7 @@ public function removeCart($id)
 
       }
 
-      
+
         return view('livewire.cartlive')->extends('layouts.site');
 
     }

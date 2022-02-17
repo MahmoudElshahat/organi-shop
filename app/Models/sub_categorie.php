@@ -18,6 +18,7 @@ class sub_categorie extends Model
 
     protected $fillable = [
         'id',
+        'lang',
         'name',
         'image',
         'desc',

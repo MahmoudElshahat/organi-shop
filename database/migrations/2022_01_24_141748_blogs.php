@@ -15,6 +15,7 @@ class Blogs extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
+            $table->string('lang')->default('en');
             $table->string('comment')->default('null');
             $table->string('image');
             $table->string('name');

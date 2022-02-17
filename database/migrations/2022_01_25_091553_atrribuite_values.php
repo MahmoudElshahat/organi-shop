@@ -15,6 +15,7 @@ class AtrribuiteValues extends Migration
     {
        Schema::create('attribuite_values', function (Blueprint $table) {
             $table->id();
+            $table->string('lang')->default('en');
             $table->string('name');
             $table->integer('attribuite_id');
             $table->string('slug');
@@ -30,6 +31,6 @@ class AtrribuiteValues extends Migration
     public function down()
     {
         Schema::dropIfExists('attribuite_values');
-        
+
     }
 }

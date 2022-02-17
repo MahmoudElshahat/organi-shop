@@ -15,6 +15,7 @@ class SubCategories extends Migration
     {
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('lang')->default('en');
             $table->string('name');
             $table->string('desc');
             $table->string('image');
