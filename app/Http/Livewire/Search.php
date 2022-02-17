@@ -18,15 +18,8 @@ class Search extends Component
     public function render()
     {
             $trem = '%' . $this->search . '%';
-        // if($this->search != "")
+
             $search = Categorie::where('name', 'LIKE', $trem)->paginate(config('contans.paginate_count'));
-            // return view('livewire.search', ['data' => $sear]);
-        // }else{
-
-        // return view('livewire.search');
-        // }
-
-
 
         return view('livewire.search', ['data' => $search]);
 

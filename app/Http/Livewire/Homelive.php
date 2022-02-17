@@ -76,9 +76,9 @@ public function shop_details($id)
 
         $this->dispatchBrowserEvent('alert',
         ['type' => 'success',  'message' => 'product Add to cart successfuly']);
-        
+
         session()->flash('message','product Add to cart successfuly');
-    }    // return
+    }
 // ============================ select product by categories ============================
 public function show(){
 
@@ -87,9 +87,6 @@ public function show(){
 // ========================
 public function s_pro($id)
     {
-            // $this->show_section=false;
-
-
           return  $this->categori_id = $id;
     }
 
@@ -97,7 +94,7 @@ public function s_pro($id)
     public function render()
     {
 
-        // dd($this->categori_id);
+       
         $m_categories = Categorie::select('id', 'name')->paginate(config('contans.paginate_five'));
 
         $main_categori = Categorie::select('id', 'name')->paginate(config('contans.paginate_count'));

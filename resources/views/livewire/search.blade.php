@@ -22,8 +22,8 @@
                             </li>
                         </ul>
                 @endforeach
-                @else
-                <span>No,thing selected</span>
+                {{-- @else
+                <span>No,thing selected</span> --}}
                 @endif
         </div>
 

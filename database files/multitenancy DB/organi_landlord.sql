@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Feb 09, 2022 at 02:55 PM
+-- Generation Time: Feb 17, 2022 at 08:59 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 8.0.6
 
@@ -24,24 +24,24 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `main_admin`
+-- Table structure for table `main_admins`
 --
 
-CREATE TABLE `main_admin` (
+CREATE TABLE `main_admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `main_admin`
+-- Dumping data for table `main_admins`
 --
 
-INSERT INTO `main_admin` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'super_admin', 'superadmin@gmail.com', '123456', NULL, NULL);
+INSERT INTO `main_admins` (`id`, `name`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(48, 'organi', 'super@gmail.com', '123456', '2022-02-10 15:26:19', '2022-02-10 15:26:19');
 
 -- --------------------------------------------------------
 
@@ -55,13 +55,6 @@ CREATE TABLE `migrations` (
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `migrations`
---
-
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2022_02_02_081953_create_landlord_tenants_table', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -73,6 +66,8 @@ CREATE TABLE `tenants` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `domain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `database` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -81,18 +76,18 @@ CREATE TABLE `tenants` (
 -- Dumping data for table `tenants`
 --
 
-INSERT INTO `tenants` (`id`, `name`, `domain`, `database`, `created_at`, `updated_at`) VALUES
-(1, 'organi', 'organi.localhost', 'organi', NULL, NULL),
-(10, 'tata', 'tata', 'tata', NULL, NULL);
+INSERT INTO `tenants` (`id`, `name`, `domain`, `database`, `email`, `password`, `created_at`, `updated_at`) VALUES
+(89, 'organi', 'organi.localhost', 'organi_organi', 'organi@gmail.com', '123456', NULL, NULL),
+(90, 'vvvvv', 'vvvvvv', 'organi_vvvvv', 'supesssssr@gmail.com', '123456', NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `main_admin`
+-- Indexes for table `main_admins`
 --
-ALTER TABLE `main_admin`
+ALTER TABLE `main_admins`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `main_admin_email_unique` (`email`);
 
@@ -115,22 +110,22 @@ ALTER TABLE `tenants`
 --
 
 --
--- AUTO_INCREMENT for table `main_admin`
+-- AUTO_INCREMENT for table `main_admins`
 --
-ALTER TABLE `main_admin`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `main_admins`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tenants`
 --
 ALTER TABLE `tenants`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
