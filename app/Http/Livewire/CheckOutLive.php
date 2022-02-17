@@ -118,18 +118,17 @@ class CheckOutLive extends Component
     // =====================================
     public function render()
     {
-        // $order_detailes=cart::where('cookie',$_COOKIE['organi'])->get('price','sale','qty');
 
         $cookie = $_COOKIE['organi'];
-
-        // $products = cart::select('product_id')->where('cookie', $cookie)->get();
-
 
         $this->data_carts = DB::table('products')
             ->distinct()
             ->join('carts', 'products.id', '=', 'carts.product_id')
-            ->select('products.*', 'carts.*')->where('cookie', $cookie)
-            ->get();
+            ->select('products.*', 'carts.*')
+            ->where([
+                    ['cookie', $cookie],
+                    ['lang',LaravelLocalization::getCurrentLocale()]
+                ])->get();
 
                 if($this->data_carts != null){
                     foreach($this->data_carts as $data){

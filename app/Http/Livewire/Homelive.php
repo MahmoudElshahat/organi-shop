@@ -16,6 +16,8 @@ use Livewire\WithPagination;
 
 use App\Models\blog;
 
+use Illuminate\Support\Facades\App;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -44,7 +46,12 @@ public function shop_details($id)
     {
 
         // dd($id);
-        $product_det = product::select('*')->where('id', $id)->first();
+        $product_det = product::select('*')
+        ->where([
+                ['id', $id],
+                ['lang',LaravelLocalization::getCurrentLocale()]
+                ])
+        ->first();
 
 
         // dd($products);
@@ -71,13 +78,12 @@ public function shop_details($id)
         }
         else {
             cart::where([['product_id', '=', $id], ['cookie', '=', $_COOKIE['organi']]])->increment('qty');
-
         }
 
         $this->dispatchBrowserEvent('alert',
         ['type' => 'success',  'message' => 'product Add to cart successfuly']);
 
-        session()->flash('message','product Add to cart successfuly');
+        // session()->flash('message','product Add to cart successfuly');
     }
 // ============================ select product by categories ============================
 public function show(){
@@ -99,7 +105,7 @@ public function s_pro($id)
 
         $main_categori = Categorie::select('id', 'name')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_count'));
 
-        $sub_categori = sub_categorie::select('id', 'name')->orderBy('id', 'desc')->paginate(config('contans.paginate_count'));
+        $sub_categori = sub_categorie::select('id', 'name')->orderBy('id', 'desc')->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_count'));
         $products = product::select('*')->inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_count'));
         // dd($products);
         if ($this->categori_id != null) {

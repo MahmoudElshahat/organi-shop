@@ -43,7 +43,10 @@ public function decrement($id)
 
         $this->product_id=$id;
 
-                $product_details=product::where('id',$id)->first();
+                $product_details=product::where([
+                                                ['id',$id],
+                                                ['lang',LaravelLocalization::getCurrentLocale()]
+                                        ])->first();
 
                 return redirect()->with(['product_det'=>$product_details]);
     }
@@ -76,7 +79,10 @@ public function decrement($id)
         // ========================================
         $this->product_id=$id;
 
-        $product_details=product::where('id',$id)->first();
+        $product_details=product::where([
+                                ['id',$id],
+                                ['lang',LaravelLocalization::getCurrentLocale()]
+                                ])->first();
 
         return redirect()->with(['product_det'=>$product_details]);
 
@@ -85,9 +91,9 @@ public function decrement($id)
     // =============================
     public function render()
     {
-        $products=product::paginate(4);
+        $products=product::where('lang',LaravelLocalization::getCurrentLocale())->paginate(4);
 
-        $pro_details=product::inRandomOrder()->first();
+        $pro_details=product::inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->first();
 
         // $this->product_id=$id;
 

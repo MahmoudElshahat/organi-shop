@@ -32,10 +32,16 @@ Route::get('/', function () {
 // ================== route of translated page =====================
 
 
-Route::group(['prefix' => LaravelLocalization::setLocale(),
-	            'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+Route::group([ 'prefix' => LaravelLocalization::setLocale(),
+               'middleware' => [
+                            'localeSessionRedirect',
+                            // 'localizationRedirect',
+                            'localeViewPath'
+                ]
 ], function ()
 {
+
+
 // =============== singin routes ==============================
 
     Route::get('user-signup_page', [user_lognController::class , 'signup_page'])->name('user.signup.page');
@@ -47,18 +53,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
     // ================ cart route ==========================================
 
-    Route::group(['prefix'=>'cart'],function(){
+    // Route::group(['prefix'=>'cart'],function(){
 
-        // Route::get('index',[cartController::class,'index'])->name('cart.index');
+    //     // Route::get('index',[cartController::class,'index'])->name('cart.index');
 
-        Route::get('add/{id}',[cartController::class,'add'])->name('cart.add');
+    //     // Route::get('add/{id}',[cartController::class,'add'])->name('cart.add');
 
-        Route::post('update',[cartController::class,'update'])->name('cart.update');
+    //     // Route::post('update',[cartController::class,'update'])->name('cart.update');
 
-        Route::post('delete',[cartController::class,'delete'])->name('cart.delete');
+    //     // Route::post('delete',[cartController::class,'delete'])->name('cart.delete');
 
 
-    });//end cart route groop function
+    // });//end cart route groop function
 
     // ================== shop page route    ===============================================
 

@@ -25,13 +25,13 @@ class Addtenant extends Component
 // ================================ Add tenants to landlord tenant ====================
 public function add(){
 
-    // dd(rand(0,1));
+   
     // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
        $data= $this->validate([
             'name'=>"required|unique:landlord.tenants,name",
             'domain'=>'required||unique:landlord.tenants,domain',
             'email'=>'required|email|unique:landlord.tenants,email|unique:landlord.main_admins,email',
-            // 'email'=>'required|unique:landlord.main_admins,email',
+
             'password'=>'required'
         ]);
         // =========== insert data into landlord tenant tabel ==========
@@ -41,16 +41,9 @@ public function add(){
                         'database'=>'organi_'.$data["name"],
                         'email'=>$data['email'],
                         'password'=>$data['password']
-                        // 'password'=>bcrypt($data['password'])
+
 //
                             ]);
-        // =========== insert data into landlord main_admins tabel ==========
-
-    //    DB::connection('landlord')->table('main_admins')
-    //                     ->insert(['name'=>$data['name'],
-    //                     'email'=>$data['email'],
-    //                     'password'=>bcrypt($data['password'])
-    //                         ]);
 
         // ============= creat new database ========================
 
@@ -68,7 +61,6 @@ public function add(){
         // ==========================================================================
        return $this->dispatchBrowserEvent('alert',
         ['type' => 'success',  'message' => 'Data Add seccessfuly']);
-        // return session()->flash('message','Data Add seccessfuly');
 
 
 }//end function add

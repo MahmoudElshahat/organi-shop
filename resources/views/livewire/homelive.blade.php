@@ -95,7 +95,7 @@
                 </div>
             </div>
             {{-- @include('front.alert.alert') --}}
-           
+
             <div class="row featured__filter">
 
                     {{-- ================== pro by section ========================== --}}

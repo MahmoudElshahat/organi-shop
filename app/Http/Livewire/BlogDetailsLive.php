@@ -20,18 +20,18 @@ class BlogDetailsLive extends Component
 
 
 
-       $blogs= blog::all();
+       $blogs= blog::where('lang',LaravelLocalization::getCurrentLocale())->get();
 
-       $blogs_random= blog::inRandomOrder()->paginate(config('contans.paginate_three'));
+       $blogs_random= blog::inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
 
-       $new_blogs= blog::latest()->paginate(config('contans.paginate_three'));
+       $new_blogs= blog::latest()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_three'));
 
 
             $trem = '%' . $this->search . '%';
             $data = Categorie::where('name', 'LIKE', $trem)->paginate(config('contans.paginate_count'));
 
-            $categories=Categorie::inRandomOrder()->paginate(config('contans.paginate_five'));
+            $categories=Categorie::inRandomOrder()->where('lang',LaravelLocalization::getCurrentLocale())->paginate(config('contans.paginate_five'));
 
 
 

@@ -44,7 +44,8 @@ class ContactLive extends Component
         event(new admin_message($pusher_data));
 
 
-        session()->flash('message', 'Message sent successfuly.');
+        $this->dispatchBrowserEvent('alert',
+        ['type' => 'success',  'message' => 'Message Sent successfuly']);
 
     }
 

@@ -88,19 +88,17 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
+                                <img src="{{asset('assets/front/img/language.png')}}" alt="">
                             <div>language</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-
-                <li>
-                        <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                            {{ $properties['native'] }}
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
+                                    <li>
+                                        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                                    {{ $properties['native'] }}
+                                                </a> @endforeach
+                                            </li>
+                                    </ul>
                             </div>
                             <div class="header__top__right__auth">
                                 <a href="{{route('user.login.page')}}"><i class="fa fa-user"></i> Login</a>
