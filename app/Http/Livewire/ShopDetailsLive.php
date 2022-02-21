@@ -7,7 +7,7 @@ use App\Models\product;
 use Livewire\WithPagination;
 
 use App\Models\cart;
-
+use LaravelLocalization;
 use Illuminate\Support\Str;
 
 class ShopDetailsLive extends Component
@@ -50,7 +50,7 @@ public function decrement($id)
 
                 return redirect()->with(['product_det'=>$product_details]);
     }
-    // ======================================
+    // ================= add to cart =====================
     public function add($id){
         // dd($id);
         $query = cart::

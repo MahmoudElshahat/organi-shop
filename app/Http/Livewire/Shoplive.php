@@ -38,6 +38,34 @@ public function select_p($id){
     $this->attr_val_id=$id;
 }
 
+// ================ add to cart =====================
+public function add($id){
+    // dd($id);
+    $q = cart::select('product_id')
+        ->where([
+        ['product_id', '=', $id],
+        ['cookie', '=', $_COOKIE['organi']]
+    ])->first();
+    if (!$q) {
+        cart::create([
+            'user_id'=>$_COOKIE['organi'],
+            'product_id' => $id,
+            'qty' => 1,
+            'cookie' => $_COOKIE['organi'],
+            // 'slug' => Str::slug($request->name)
+        ]);
+    }
+    else {
+        cart::where([['product_id', '=', $id], ['cookie', '=', $_COOKIE['organi']]])->increment('qty');
+    }
+
+    $this->dispatchBrowserEvent('alert',
+    ['type' => 'success',  'message' => 'product Add to cart successfuly']);
+
+    // session()->flash('message','product Add to cart successfuly');
+}
+
+
 
 // =====================================
     public function render()
@@ -48,7 +76,7 @@ public function select_p($id){
         $attrs=attribuite::where('lang',LaravelLocalization::getCurrentLocale())->get();
         // foreach($attrs as $attr)
         // =============== coloer atribute =========================
-        $color=attribuite::where('name','LIKE','%olor%')->first();
+        $color=attribuite::where([['name','LIKE','%olor%','or','name','LIKE','%لون%']])->first();
 
             if($color!=null)
          $attr_val=attribuite_value::where([['attribuite_id',$color->id],['lang',LaravelLocalization::getCurrentLocale()]])->get();

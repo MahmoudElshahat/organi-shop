@@ -22,10 +22,10 @@ class Orders extends Migration
             $table->string('apartment')->default('');
             $table->string('State');
             $table->string('city');
-            $table->integer('Postcode');
-            $table->integer('Phone');
+            $table->string('Postcode');
+            $table->string('Phone');
             $table->string('email');
-            $table->string('Order_notes');
+            $table->text('Order_notes');
             $table->string('slug');
             $table->timestamps();
         });

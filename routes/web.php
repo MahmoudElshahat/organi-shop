@@ -43,11 +43,12 @@ Route::group([ 'prefix' => LaravelLocalization::setLocale(),
 
 
 // =============== singin routes ==============================
-
-    Route::get('user-signup_page', [user_lognController::class , 'signup_page'])->name('user.signup.page');
-    Route::post('user-signup', [user_lognController::class , 'signup'])->name('user.signup');
-    Route::get('user-loginpage', [user_lognController::class , 'login_page'])->name('user.login.page');
+Route::group(['preix'=>'site'],function(){
+    Route::get('user-signup-page', [user_lognController::class , 'user_signup_page'])->name('user.signup.page');
+    Route::post('user-signup', [user_lognController::class , 'user_signup'])->name('user.signup');
+    Route::get('user-login-page', [user_lognController::class , 'login_page'])->name('user.login.page');
     Route::post('user-login', [user_lognController::class , 'login'])->name('user.login');
+     });
     // ================= site route =======================
     Route::get('/', \App\Http\Livewire\Homelive::class)->name('home');
 

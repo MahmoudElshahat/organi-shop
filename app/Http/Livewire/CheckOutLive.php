@@ -10,6 +10,7 @@ use App\Models\cart;
 
 use Illuminate\Support\Facades\DB;
 
+use LaravelLocalization;
 
 use App\Models\User;
 
@@ -73,7 +74,7 @@ class CheckOutLive extends Component
             'Phone'=>$data['Phone'],
             'Order_notes'=>$data['Order_notes'],
             'slug'=>str::slug($data['first_name']),
-            'email'=>$data['email'],
+            'email'=>$data['email']
         ]);
     // ============================================
      if($this->Create_account !=''){
@@ -127,7 +128,7 @@ class CheckOutLive extends Component
             ->select('products.*', 'carts.*')
             ->where([
                     ['cookie', $cookie],
-                    ['lang',LaravelLocalization::getCurrentLocale()]
+                    // ['lang',LaravelLocalization::getCurrentLocale()]
                 ])->get();
 
                 if($this->data_carts != null){

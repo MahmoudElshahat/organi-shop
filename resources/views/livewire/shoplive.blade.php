@@ -18,9 +18,6 @@
     </section>
 
 
-
-
-
      <section class="product spad">
         <div class="container">
             <div class="row">
@@ -141,7 +138,7 @@
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                <li><a wire:click="add({{$product->id}})"><i class="fa fa-shopping-cart"></i></a></li>
                                             </ul>
                                         </div>
                                         <div class="product__discount__item__text">
@@ -190,8 +187,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        @foreach ($datas as $product)
-
+                    @foreach ($datas as $product)
 
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
@@ -200,7 +196,8 @@
                                     <ul class="product__item__pic__hover">
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a wire:click="add({{$product->id}})"><i class="fa fa-shopping-cart"></i></a></li>
+
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

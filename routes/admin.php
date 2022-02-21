@@ -47,7 +47,7 @@ Route::get('loginpage', [dashboardController::class , 'login_page'])->name('admi
 Route::post('login', [dashboardController::class , 'login'])->name('admin.login');
 
 // ============================
-Route::group(['namespace'=>'admin','prefix'=>'admin','middleware' => 'admin'], function () {
+Route::group(['namespace'=>'admin','prefix'=>'admin'], function () {
 
 Route::get('/dashboard', [dashboardController::class , 'index'])->name('admin.dashboard');
 

@@ -6,7 +6,7 @@ use App\Models\blog;
 
 use App\Models\Categorie;
 
-
+use LaravelLocalization;
 use Livewire\Component;
 
 class BlogDetailsLive extends Component

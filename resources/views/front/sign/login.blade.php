@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <h6 class="card-subtitle line-on-side text-muted text-center font-small-3 pt-2">
-                            <span>تسجيل الدخول</span>
+                            <span>مستخدم تسجيل الدخول</span>
                         </h6>
                     </div>
                     {{-- @include('admin.includes.alerts.errors') --}}
@@ -61,10 +61,10 @@
                                     دخول
                                 </button>
                                 <h1 class="text-center">OR</h1>
-                                <a href="{{route('admin.signup.page')}}">
-                                     <button style="margin-top:20px" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i>
-                                        تسجيل كعضو جديد
-                                    </button>
+                                <a href="{{route('user.signup.page')}}" class="btn btn-info btn-lg btn-block">
+                                     {{-- <button style="margin-top:20px" class="btn btn-info btn-lg btn-block"><i class="ft-unlock"></i> --}}
+                                        تسجيل جديد
+                                    {{-- </button> --}}
                                 </a>
                             </form>
                         </div>

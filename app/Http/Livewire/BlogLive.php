@@ -6,6 +6,7 @@ use App\Models\blog;
 use App\Models\Categorie;
 
 use Livewire\Component;
+use LaravelLocalization;
 
 class BlogLive extends Component
 {

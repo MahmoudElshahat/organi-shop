@@ -101,10 +101,14 @@
                                     </ul>
                             </div>
                             <div class="header__top__right__auth">
+                                @if(!session('user_name'))
                                 <a href="{{route('user.login.page')}}"><i class="fa fa-user"></i> Login</a>
+                                @else
+                                <i class="fa fa-user">{{session('user_name')}}</i>
+                                @endif
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="{{route('admin.login.page')}}"><i class="fa fa-user"></i> Dashboard</a>
+                                <a href="{{route('admin.login.page')}}"><i class="icon-dashboard">Dashboard</i> </a>
                             </div>
 
                             <div class="header__top__right__auth">
